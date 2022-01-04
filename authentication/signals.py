@@ -13,12 +13,12 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
       <body>
         Dear <b>%s</b>,
         <p>The OTP for password reset is <b>%s</b>. The OTP is valid for 6 minutes. </p>
-        <p>Regards,<br>Alcheringa Web Operations</p>
+        <p>Regards,<br>Bus App</p>
       </body>
     </html>
     """ % (reset_password_token.user.email, reset_password_token.key)
 
-    email = EmailMessage('Reset Password for Alcheringa', email_body, to=[
+    email = EmailMessage('Reset Password for Bus App', email_body, to=[
                          reset_password_token.user.email])
     email.content_subtype = "html"
     email.send()
