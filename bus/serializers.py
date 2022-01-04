@@ -34,27 +34,25 @@ class BusSerializer(serializers.ModelSerializer):
         bus.save()
         return bus
     
-    # def update(self, instance, validated_data):
-    #         # Update the  instance
-    #     instance.destination_from = validated_data['destination_from']
-    #     instance.save()
+    def update(self, instance, validated_data):
+        
+        instance.destination_from = validated_data['destination_from']
+        instance.destination_to = validated_data['destination_to']
+        
+        instance.date_of_departure = validated_data['date_of_departure']
+        instance.time_of_departure = validated_data['time_of_departure']
+        
+        instance.date_of_arrival = validated_data['date_of_arrival']
+        instance.time_of_arrival = validated_data['time_of_arrival']
+        
+        driver = validated_data.pop('driver')
+        if not Driver.objects.filter(phone=driver['phone']):
+            driver = Driver.objects.create(**driver)
+        else:
+            driver = Driver.objects.filter(**driver).first()
+            
+        instance.driver = driver
 
-    #     # Delete any detail not included in the request
-    #     owner_ids = [item['owner_id'] for item in validated_data['owners']]
-    #     for owner in cars.owners.all():
-    #         if owner.id not in owner_ids:
-    #             owner.delete()
-
-    #     # Create or update owner 
-    #     for owner in validated_data['owners']:
-    #         ownerObj = Owner.objects.get(pk=item['id'])
-    #         if ownerObje:
-    #             ownerObj.some_field=item['some_field']
-    #             ....fields...
-    #         else:
-    #            ownerObj = Owner.create(car=instance,**owner)
-    #         ownerObj.save()
-
-    #     return instance
+        return instance
 
 
