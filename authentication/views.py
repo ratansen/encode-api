@@ -26,7 +26,7 @@ class LoginView(generics.CreateAPIView):
             login(request, user)
             serializer = UserSerializer(user, context={'request': request})
             token = jwt_encode_handler(jwt_payload_handler(user))
-            return Response(data={"success": True, "token": token, "data": serializer.data})
+            return Response(data={"success": True, "token": token, "data": serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response(data={"message": "Invalid email or password", "success": False}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -64,7 +64,7 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         try:
             serializer = UserSerializer(
                 request.user, context={'request': request})
-            status_code = status.HTTP_200_OK
+            status = status.HTTP_200_OK
             response = {
                 'success': True,
                 'detail': 'User profile fetched successfully',
@@ -72,12 +72,12 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
             }
 
         except Exception as e:
-            status_code = status.HTTP_400_BAD_REQUEST
+            status = status.HTTP_400_BAD_REQUEST
             response = {
                 'success': False,
                 'detail': str(e)
             }
-        return Response(response, status=status_code)
+        return Response(response, status=status)
 
     def put(self, request, *args, **kwargs):
         try:
@@ -88,15 +88,15 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
             user.email = body["email"]
             user.phone = body["phone"]
             user.save()
-            status_code = status.HTTP_200_OK
+            status = status.HTTP_200_OK
             response = {
                 'success': True
             }
 
         except Exception as e:
-            status_code = status.HTTP_400_BAD_REQUEST
+            status= status.HTTP_400_BAD_REQUEST
             response = {
                 'success': False,
                 'detail': str(e)
             }
-        return Response(response, status=status_code)
+        return Response(response, status=status)
