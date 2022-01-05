@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import datetime
 import os
-import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +27,7 @@ SECRET_KEY = 'e7=yd^ks*#@^@6$1_(5g5k^(&mx=z_yse&9&zbd#k7cc5k$&+$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['sustainable-bus-app.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -196,4 +195,3 @@ EMAIL_HOST_USER = 'schedulerevent9@gmail.com'
 EMAIL_HOST_PASSWORD = 'qigpglvkwjrldryy'
 
 
-django_heroku.settings(locals())
