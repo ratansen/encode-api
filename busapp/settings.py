@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
     'django_rest_passwordreset',
@@ -199,3 +200,5 @@ EMAIL_HOST_USER = 'schedulerevent9@gmail.com'
 EMAIL_HOST_PASSWORD = 'qigpglvkwjrldryy'
 
 
+WHITENOISE_USE_FINDERS = True
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
