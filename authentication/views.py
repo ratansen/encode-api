@@ -64,20 +64,20 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         try:
             serializer = UserSerializer(
                 request.user, context={'request': request})
-            status = status.HTTP_200_OK
             response = {
                 'success': True,
                 'detail': 'User profile fetched successfully',
                 'data': serializer.data
             }
+            return Response(response, status=status.HTTP_200_OK)
+
 
         except Exception as e:
-            status = status.HTTP_400_BAD_REQUEST
             response = {
                 'success': False,
                 'detail': str(e)
             }
-        return Response(response, status=status)
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
         try:
@@ -88,15 +88,15 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
             user.email = body["email"]
             user.phone = body["phone"]
             user.save()
-            status = status.HTTP_200_OK
             response = {
                 'success': True
             }
+            return Response(response, status=status.HTTP_200_OK)
+
 
         except Exception as e:
-            status= status.HTTP_400_BAD_REQUEST
             response = {
                 'success': False,
                 'detail': str(e)
             }
-        return Response(response, status=status)
+            return Response(response, status=status.HTTP_400_BAD_REQUEST)
