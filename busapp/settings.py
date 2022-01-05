@@ -27,7 +27,7 @@ SECRET_KEY = 'e7=yd^ks*#@^@6$1_(5g5k^(&mx=z_yse&9&zbd#k7cc5k$&+$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sustainable-bus-app.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['sustainable-bus.herokuapp.com','127.0.0.1']
 
 
 # Application definition
