@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'bus.apps.BusConfig',
-    'phone_verify',
 ]
 
 MIDDLEWARE = [
