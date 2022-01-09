@@ -1,10 +1,11 @@
-from django.urls import path,include
-from .views import LoginView, RegisterUsersView, UserProfileView
+from django.urls import path, include
+
+from authentication.views import PhoneView
+from rest_framework.routers import DefaultRouter
+from phone_verify.api import VerificationViewSet
+
 
 urlpatterns = [
-    path('login/', LoginView.as_view(), name="auth-login"),
-    path('register/', RegisterUsersView.as_view(), name="auth-register"),
-    path('profile/', UserProfileView.as_view(), name="auth-profile"),
-    path('password_reset',
-         include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('phone/', PhoneView.as_view(), name="auth-login"),
+    path('phone-verify/',  VerificationViewSet, name="phone-verify"),
 ]

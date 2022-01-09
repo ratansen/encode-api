@@ -3,19 +3,20 @@ from django.contrib.auth.admin import UserAdmin
 from django.forms import TextInput, Textarea
 from authentication.models import NewUser
 
+
 class UserAdminConfig(UserAdmin):
     model = NewUser
-    search_fields = ('email', 'username', 'fullname',)
-    list_filter = ('email', 'username', 'fullname',
+    search_fields = ('fullname',)
+    list_filter = ('fullname',
                    'is_active', 'is_staff', 'id')
     ordering = ('-date_joined',)
-    list_display = ('email', 'username', 'fullname',
+    list_display = ('phone',
                     'is_active', 'is_staff', 'id',)
     fieldsets = (
-        (None, {'fields': ('email', 'username',
-         'fullname', 'id')}),
+        (None, {'fields': (
+         'fullname','role', 'id')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
-        ('Personal', {'fields': ( 'about', 'phone','provider')}),
+        ('Personal', {'fields': ('about', 'phone')}),
         ('Group Permissions', {
             'fields': ('groups', 'user_permissions', )
         })
@@ -26,7 +27,7 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'username', 'fullname', 'password1', 'password2', 'is_active', 'is_staff')}
+            'fields': ('fullname', 'password1', 'password2', 'is_active', 'is_staff')}
          ),
     )
 
