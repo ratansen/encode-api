@@ -7,14 +7,14 @@ from authentication.models import NewUser
 class UserAdminConfig(UserAdmin):
     model = NewUser
     search_fields = ('fullname',)
-    list_filter = ('fullname',
+    list_filter = ('phone', 'role',
                    'is_active', 'is_staff', 'id')
     ordering = ('-date_joined',)
     list_display = ('phone',
                     'is_active', 'is_staff', 'id',)
     fieldsets = (
         (None, {'fields': (
-         'fullname','role', 'id')}),
+         'fullname', 'role', 'id')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
         ('Personal', {'fields': ('about', 'phone')}),
         ('Group Permissions', {
@@ -27,7 +27,7 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('fullname', 'password1', 'password2', 'is_active', 'is_staff')}
+            'fields': ('phone', 'role','password1', 'password2', 'is_active', 'is_staff')}
          ),
     )
 
