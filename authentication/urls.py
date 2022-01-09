@@ -2,7 +2,6 @@ from django.urls import path, include
 
 from authentication.views import PhoneView
 from rest_framework.routers import DefaultRouter
-from phone_verify.api import VerificationViewSet
 
 
 urlpatterns = [
